@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pandas
+pydantic
+pytest
+httpx
+coverage
+python-dateutil
