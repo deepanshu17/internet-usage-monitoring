@@ -86,17 +86,20 @@ def test_get_analytics_with_data():
 
 def test_search_user_success():
     db = TestingSessionLocal()
-    ref_time = datetime(2022, 11, 4, 15, 43)
-    log = UsageLog(
-        username="john",
-        mac_address="mac1",
-        start_time=ref_time - timedelta(minutes=30),
-        usage_time_seconds=1800,
-        upload_kb=10240, # 10MB
-        download_kb=20480 # 20MB
-    )
-    db.add(log)
-    db.commit()
+    try:
+        ref_time = datetime(2022, 11, 4, 15, 43)
+        log = UsageLog(
+            username="john",
+            mac_address="mac1",
+            start_time=ref_time - timedelta(minutes=30),
+            usage_time_seconds=1800,
+            upload_kb=10240, # 10MB
+            download_kb=20480 # 20MB
+        )
+        db.add(log)
+        db.commit()
+    finally:
+        db.close()
 
     response = client.get("/user/search?username=john&datetime=20221104T1543")
     assert response.status_code == 200
