@@ -2,9 +2,6 @@ import pytest
 import os
 import sys
 import pandas as pd
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from scripts.ingest import hms_to_seconds, ingest_data
